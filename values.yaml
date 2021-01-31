@@ -1,0 +1,27 @@
+---
+
+# Enable discovery type of single-node
+singleNode: true
+
+# Permit co-located instances for solitary minikube virtual machines.
+antiAffinity: "soft"
+
+# Shrink default JVM heap.
+esJavaOpts: "-Xmx75m -Xms75m"
+
+# Allocate smaller chunks of memory per pod.
+resources:
+resources:
+  requests:
+    memory: "100Mi"
+    cpu: "10m"
+  limits:
+    memory: "400Mi"
+    cpu: "800m"
+
+# Request smaller persistent volumes.
+volumeClaimTemplate:
+  accessModes: [ "ReadWriteOnce" ]
+  resources:
+    requests:
+      storage: 100Mi

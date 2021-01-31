@@ -22,6 +22,7 @@ spec:
       creationTimestamp: null
       labels:
         io.kompose.service: elasticsearch
+        app: elasticsearch
     spec:
       containers:
         - env:
@@ -39,6 +40,6 @@ spec:
               cpu: "10m"
             limits:
               memory: "400Mi"
-              cpu: "500m"
+              cpu: "250m"
       restartPolicy: Always
 status: {}
