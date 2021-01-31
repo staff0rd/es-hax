@@ -13,20 +13,24 @@ namespace Loggit
             if (args.Length > 0) {
                 delay = int.Parse(args[0]);
             }
+            var host = "localhost";
+            if (args.Length > 1) {
+                host = args[1];
+            }
+            
             var loggerConfig = new LoggerConfiguration()
-                .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri("http://localhost:9200") ){
+                .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri($"http://{host}:9200") ){
                         AutoRegisterTemplate = true,
                         AutoRegisterTemplateVersion = AutoRegisterTemplateVersion.ESv7,
                         EmitEventFailure =
                             EmitEventFailureHandling.WriteToSelfLog |
                             EmitEventFailureHandling.RaiseCallback |
                             EmitEventFailureHandling.ThrowException,
-                        FailureCallback = (e) => {
-                            Console.WriteLine("Fail");
-                            if (e.Exception == null) {
-                                Console.WriteLine("No exception");
-                            } else
-                            Console.WriteLine($"Failed to write: {e.Exception.Message}");
+                        FailureCallback = (e, ex) => {
+                            if (ex != null)
+                                Console.WriteLine($"Failed to write: {ex.Message}");
+                            else
+                                Console.WriteLine("Failed to write");
                         
             }
                         

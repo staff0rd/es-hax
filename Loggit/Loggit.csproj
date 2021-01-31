@@ -7,7 +7,10 @@
 
   <ItemGroup>
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
-    <PackageReference Include="serilog.sinks.elasticsearch" Version="8.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\serilog-sinks-elasticsearch\src\Serilog.Sinks.Elasticsearch\Serilog.Sinks.Elasticsearch.csproj" />
   </ItemGroup>
 
 </Project>
