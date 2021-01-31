@@ -33,6 +33,12 @@ spec:
           name: elasticsearch
           ports:
             - containerPort: 9200
-          resources: {}
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "10m"
+            limits:
+              memory: "400Mi"
+              cpu: "500m"
       restartPolicy: Always
 status: {}
