@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loggit-deployment
+  labels:
+    app: loggit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loggit
+  template:
+    metadata:
+      labels:
+        app: loggit
+    spec:
+      containers:
+      - name: loggit
+        image: staff0rd/loggit:1.0.0
+        args: ["1000", "elasticsearch"]
+        

@@ -7,7 +7,7 @@ singleNode: true
 antiAffinity: "soft"
 
 # Shrink default JVM heap.
-esJavaOpts: "-Xmx75m -Xms75m"
+esJavaOpts: "-Xmx96m -Xms96m"
 
 # Allocate smaller chunks of memory per pod.
 resources:
@@ -24,4 +24,4 @@ volumeClaimTemplate:
   accessModes: [ "ReadWriteOnce" ]
   resources:
     requests:
-      storage: 100Mi
+      storage: 1Gi
