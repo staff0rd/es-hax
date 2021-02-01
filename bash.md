@@ -1,12 +1,28 @@
 Local
 
+docker pull docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+
+```bash
+MEM=75 && \
+    docker rm -f elasticsearch && \
+    docker run -d --name elasticsearch -p 9200:9200 \
+        -e "discovery.type=single-node" \
+        -e "ES_JAVA_OPTS=-Xms${MEM}m -Xmx${MEM}m" \
+        docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2 && \
+    START=$(date +%s) && \
+    (docker logs -t -f elasticsearch &) | grep -m1 starting && \
+    echo $(($(date +%s)-START))
+```
+
+
 ```bash
 MEM=96 && \
     docker rm -f elasticsearch && \
     docker run -d --name elasticsearch -p 9200:9200 \
         -e "discovery.type=single-node" \
         -e "ES_JAVA_OPTS=-Xms${MEM}m -Xmx${MEM}m" \
-        elasticsearch:7.10.1 && START=$(date +%s) && \
+        elasticsearch:7.10.1 && \
+    START=$(date +%s) && \
     (docker logs -t -f elasticsearch &) | grep -m1 starting && \
     echo $(($(date +%s)-START))
 ```
